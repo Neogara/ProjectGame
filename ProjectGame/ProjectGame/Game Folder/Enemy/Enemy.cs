@@ -11,21 +11,30 @@ public class Enemy : GameObject
     public string Name;
     public string Discroption;
 
-    public Enemy(EnemyType EnemyType, Texture2D texture, Rectangle rect)
+    public int Heath = 100;
+    public int Mana = 100;
+    public int Speed = 5;
+
+    public int Attack= 5;
+    public int Deffense = 5;
+    public int MissChanse = 1;
+
+    public Enemy(EnemyType EnemyType, Vector2 position, Texture2D texture, Rectangle rect) : base(position, texture, rect)
     {
         this.EnemyType = EnemyType;
-        base.texture = texture;
-        base.rect = rect;
+      
 
     }
 
-    public override void Draw(SpriteBatch spriteBatch)
+    public override void Draw()
     {
-        spriteBatch.Draw(base.texture, base.rect, Color.White);
+        Sprite.Begin();
+        Sprite.Draw(base.texture, base.rect, Color.White);
+        Sprite.End();
     }
 
-    public override void Update(SpriteBatch spriteBatch)
+    public override void Update()
     {
-        Draw(spriteBatch);
+        Draw();
     }
 } //Враг

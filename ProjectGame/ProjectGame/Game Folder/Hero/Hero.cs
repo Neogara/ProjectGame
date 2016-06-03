@@ -9,19 +9,38 @@ using Microsoft.Xna.Framework.Input;
 public class Hero : GameObject
 {
     public HeroType HeroType;
+
     public string Name;
     public string Discroption;
-    public int Speed = 5;
 
-    public Hero(HeroType HeroType, Texture2D texture, Rectangle rect)
+
+    public int Heath = 100;
+    public int Mana = 100;
+    public int Speed = 5;
+    public int Karma = 0 ;
+
+    //характеристики
+    public int Strench = 5;
+    public int Agility = 5;
+    public int Intelect = 5;
+    public int Charisma = 5;
+    public int Luck = 5;
+    public int Barter = 5;
+
+    public int Attack= 5;
+    public int Deffense = 5;
+    public int MissChanse = 1;
+    
+
+
+    public Hero(HeroType HeroType,Vector2 position, Texture2D texture, Rectangle rect) : base(position, texture, rect)
     {
         this.HeroType = HeroType;
-        base.texture = texture;
-        base.rect = rect;
+        
 
     }
 
-    public override void Update(SpriteBatch spriteBatch)
+    public override void Update()
     {
         #region Move 
         if (Keyboard.GetState().IsKeyDown(Keys.W))
@@ -42,11 +61,14 @@ public class Hero : GameObject
         }
         #endregion //Хождение героя 
 
-        Draw(spriteBatch);
+        Draw();
     }
-
-    public override void Draw(SpriteBatch spriteBatch)
+    public override void Draw()
     {
-        spriteBatch.Draw(base.texture, base.rect, Color.White);
+        Sprite.Begin();
+        Sprite.Draw(base.texture, base.rect, Color.White);
+        Sprite.End();
     }
-} //герой за которого мы играем 
+ 
+}
+ //герой за которого мы играем 

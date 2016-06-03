@@ -12,7 +12,7 @@ public class Used : GameObject
     public string Name;
     public string Discroption;
 
-    public Used(UsedType UsedType, Texture2D texture, Rectangle rect)
+    public Used(UsedType UsedType, Vector2 position, Texture2D texture, Rectangle rect) : base(position, texture, rect)
     {
         this.UsedType = UsedType;
         base.texture = texture;
@@ -20,14 +20,15 @@ public class Used : GameObject
 
     }
 
-    public override void Draw(SpriteBatch spriteBatch)
+    public override void Draw()
     {
-        spriteBatch.Draw(base.texture, base.rect, Color.White);
+        Sprite.Begin();
+        Sprite.Draw(base.texture, base.rect, Color.White);
+        Sprite.End();
     }
-
-    public override void Update(SpriteBatch spriteBatch)
+    public override void Update()
     {
-        Draw(spriteBatch);
+        Draw();
     }
 
     public virtual void Action()

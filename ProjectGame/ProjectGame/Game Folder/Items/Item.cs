@@ -11,7 +11,7 @@ public class Item : GameObject
     public string Name;
     public string Discroption;
 
-    public Item(ItemsType itemType, Texture2D texture, Rectangle rect)
+    public Item(ItemsType itemType, Vector2 position, Texture2D texture, Rectangle rect) : base(position, texture, rect)
     {
         this.ItemType = itemType;
         base.texture = texture;
@@ -19,13 +19,14 @@ public class Item : GameObject
 
     }
 
-    public override void Draw(SpriteBatch spriteBatch)
+    public override void Draw()
     {
-        spriteBatch.Draw(base.texture, base.rect, Color.White);
+        Sprite.Begin();
+        Sprite.Draw(base.texture, base.rect, Color.White);
+        Sprite.End();
     }
-
-    public override void Update(SpriteBatch spriteBatch)
+    public override void Update()
     {
-        Draw(spriteBatch);
+        Draw();
     }
 } //вещи

@@ -23,6 +23,7 @@ namespace ProjectGame
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+ 
         }
 
 
@@ -35,7 +36,8 @@ namespace ProjectGame
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+        
+            
 
 
         }

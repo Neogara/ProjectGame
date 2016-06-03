@@ -9,20 +9,22 @@ public class Ground : GameObject
 {
     public GroundType GroundType;
 
-    public Ground(GroundType groundType, Texture2D texture, Rectangle rect)
+    public Ground(GroundType groundType,Vector2 position, Texture2D Texture ,Rectangle Rect) :base(position,Texture,Rect)
     {
+        
         this.GroundType = groundType;
-        base.texture = texture;
-        base.rect = rect;
+    
 
     }
 
-    public override void Draw(SpriteBatch spriteBatch)
+    public override void Draw()
     {
-        spriteBatch.Draw(base.texture, base.rect, Color.White);
+        Sprite.Begin();
+        Sprite.Draw(base.texture, base.rect, Color.White);
+        Sprite.End();
     }
-    public override void Update(SpriteBatch spriteBatch)
+    public override void Update()
     {
-        Draw(spriteBatch);
+        Draw();
     }
 } // пол

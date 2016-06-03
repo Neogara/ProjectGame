@@ -7,17 +7,26 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 
-public abstract class GameObject // игровой обьект 
+public  class GameObject // игровой обьект 
 {
     public Vector2 Position; // позиция
     public Texture2D texture; // текстура
     public Rectangle rect; //Бокс
+    public SpriteBatch Sprite;
     public bool Collision; // колизия 
-    public TypeGameObject GameType; // тип 
+    public TypeGameObject GameType; // тип s
 
-    abstract public void Draw(SpriteBatch spriteBatch);  // функия рисования
+    public GameObject (Vector2 position , Texture2D Texture ,Rectangle Rect)
+    {
+        texture = Texture;
+        rect = Rect;
+        Position = position;  
+    }
 
-    abstract public void Update(SpriteBatch spriteBatch) // функция ОБновления 
+    virtual public void Draw() { }// функия рисования
+
+
+    virtual public void Update() { } // функция ОБновления 
 }
 
 
