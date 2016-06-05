@@ -19,22 +19,16 @@ public class Enemy : GameObject
     public int Deffense = 5;
     public int MissChanse = 1;
 
-    public Enemy(EnemyType EnemyType, Vector2 position, Texture2D texture, Rectangle rect) : base(position, texture, rect)
+    public Enemy(EnemyType EnemyType, Vector2 position, Texture2D texture, Rectangle rect, int frameH, int frameW) : base(position, texture, frameH, frameW)
     {
         this.EnemyType = EnemyType;
       
 
     }
 
-    public override void Draw()
-    {
-        Sprite.Begin();
-        Sprite.Draw(base.texture, base.rect, Color.White);
-        Sprite.End();
-    }
 
-    public override void Update()
+    public override void Update(GameTime gameTime)
     {
-        Draw();
+        
     }
 } //Враг

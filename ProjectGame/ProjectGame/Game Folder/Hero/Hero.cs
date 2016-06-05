@@ -13,7 +13,6 @@ public class Hero : GameObject
     public string Name;
     public string Discroption;
 
-
     public int Heath = 100;
     public int Mana = 100;
     public int Speed = 5;
@@ -32,43 +31,88 @@ public class Hero : GameObject
     public int MissChanse = 1;
     
 
-
-    public Hero(HeroType HeroType,Vector2 position, Texture2D texture, Rectangle rect) : base(position, texture, rect)
+    public Hero(HeroType HeroType, Vector2 position, Texture2D texture, int frameH, int frameW) : base(position, texture, frameH, frameW)
     {
         this.HeroType = HeroType;
-        
-
     }
 
-    public override void Update()
+    public Hero() : this(HeroType.Knight, new Vector2(0, 0), null, 0, 0) { }
+  
+    public override void Update(GameTime gameTime)
     {
         #region Move 
         if (Keyboard.GetState().IsKeyDown(Keys.W))
         {
-            rect.Y += Speed;
+            position.Y += -Speed;
+            GoUpSideAnimation(gameTime);
         }
-        if (Keyboard.GetState().IsKeyDown(Keys.S))
+        else if (Keyboard.GetState().IsKeyDown(Keys.S))
         {
-            rect.Y += -Speed;
+            position.Y += Speed;
+            GoDownSideAnimation(gameTime);
         }
+
         if (Keyboard.GetState().IsKeyDown(Keys.A))
         {
-            rect.X += -Speed;
+            position.X += -Speed;
+            GoLeftSideAnimation(gameTime);
         }
-        if (Keyboard.GetState().IsKeyDown(Keys.D))
+       else if (Keyboard.GetState().IsKeyDown(Keys.D))
         {
-            rect.X += Speed;
+            position.X += Speed;
+            GoRightSideAnimation(gameTime);
+        }
+       else
+        {
+            IdleAnimation(gameTime);
         }
         #endregion //Хождение героя 
+    }
 
-        Draw();
-    }
-    public override void Draw()
+    public void IdleAnimation(GameTime gameTime)
     {
-        Sprite.Begin();
-        Sprite.Draw(base.texture, base.rect, Color.White);
-        Sprite.End();
+        // animation.DrawAnimation(gameTime, 1, 1, 1);
     }
- 
+
+    public void GoRightSideAnimation (GameTime gameTime)
+    {
+        this.rect = animation.DrawAnimation(gameTime, 0,0,33);
+    }
+
+    public void GoLeftSideAnimation(GameTime gameTime)
+    {
+         this.rect = animation.DrawAnimation(gameTime, 1, 0,33 );
+    }
+
+    public void GoUpSideAnimation(GameTime gameTime)
+    {
+        // this.rect = animation.DrawAnimation(gameTime, 1, 1, 1);
+    }
+
+    public void GoDownSideAnimation(GameTime gameTime)
+    {
+        //this.rect =  animation.DrawAnimation(gameTime, 1, 1, 1);
+    }
+
+    public void SetInfo(string Name, string Discroption)
+    {
+        switch (HeroType)
+        {
+            case HeroType.Knight:
+                {
+
+                    break;
+                }
+            case HeroType.Mage:
+                {
+                    break;
+                }
+            case HeroType.Rogue:
+                {
+                    break;
+                }
+        }
+    }
+
 }
  //герой за которого мы играем 

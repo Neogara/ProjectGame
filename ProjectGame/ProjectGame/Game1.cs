@@ -16,6 +16,10 @@ namespace ProjectGame
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+
+        Hero MainHero;
+        Camera MainCamera;
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -23,21 +27,26 @@ namespace ProjectGame
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
- 
         }
 
 
         protected override void Initialize()
         {
             base.Initialize();
+            MainCamera = new Camera(GraphicsDevice.Viewport);
         }
 
 
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-        
-            
+
+
+            MainHero = new Hero(HeroType.Mage, new Vector2(50, 50), Content.Load<Texture2D>("fameleSprite"), 31, 11);
+
+
+
+            IsMouseVisible = true;
 
 
         }
@@ -50,20 +59,24 @@ namespace ProjectGame
 
 
         protected override void Update(GameTime gameTime)
-        { 
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
-            
+        {
+            MainCamera.Update(gameTime, MainHero);
+            MainHero.Update(gameTime);
+
+
 
             base.Update(gameTime);
         }
 
-        
+
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-         
+           // spriteBatch.Begin(SpriteSortMode.Texture,null, null, null, null, null,MainCamera.matrixScreen);
+            spriteBatch.Begin(SpriteSortMode.Deferred,null,SamplerState.PointWrap,DepthStencilState.Default,RasterizerState.CullNone,null,MainCamera.matrixScreen);
+            MainHero.Draw(spriteBatch, 0f, 5f);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
