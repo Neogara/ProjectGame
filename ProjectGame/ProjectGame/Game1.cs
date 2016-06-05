@@ -20,6 +20,8 @@ namespace ProjectGame
         Hero MainHero;
         Camera MainCamera;
 
+        Hero Merch;
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -44,7 +46,7 @@ namespace ProjectGame
 
             MainHero = new Hero(HeroType.Mage, new Vector2(50, 50), Content.Load<Texture2D>("fameleSprite"), 31, 11);
 
-
+            Merch = new Hero(HeroType.Rogue, new Vector2(200, 50), Content.Load<Texture2D>("Merch"), 32, 32);
 
             IsMouseVisible = true;
 
@@ -62,6 +64,7 @@ namespace ProjectGame
         {
             MainCamera.Update(gameTime, MainHero);
             MainHero.Update(gameTime);
+            
 
 
 
@@ -75,6 +78,8 @@ namespace ProjectGame
 
            // spriteBatch.Begin(SpriteSortMode.Texture,null, null, null, null, null,MainCamera.matrixScreen);
             spriteBatch.Begin(SpriteSortMode.Deferred,null,SamplerState.PointWrap,DepthStencilState.Default,RasterizerState.CullNone,null,MainCamera.matrixScreen);
+            MainHero.Draw(spriteBatch, 0f, 5f);
+            Merch.Draw(spriteBatch, 0f, 5f);
             MainHero.Draw(spriteBatch, 0f, 5f);
             spriteBatch.End();
 
