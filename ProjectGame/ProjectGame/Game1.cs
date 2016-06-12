@@ -19,11 +19,14 @@ namespace ProjectGame
 
         Hero MainHero;
         Camera MainCamera;
-
         Hero Merch;
-
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Grass[,] grass;
+        Trigger testTrigger;
+        SpriteFont font;
+
+        // BarkSystem barktest;
 
         public Game1()
         {
@@ -36,6 +39,8 @@ namespace ProjectGame
         {
             base.Initialize();
             MainCamera = new Camera(GraphicsDevice.Viewport);
+            GraphicsDevice.SamplerStates[0] = SamplerState.LinearClamp;
+
         }
 
 
@@ -43,9 +48,19 @@ namespace ProjectGame
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-
+            Texture2D grassTexture = Content.Load<Texture2D>("GrassSprite");
+            grass = new Grass[100, 100];
+            for (int i = 0; i <= grass.GetLength(0) - 1; i++)
+            {
+                for (int j = 0; j <= grass.GetLength(1) - 1; j++)
+                {
+                    grass[i, j] = new Grass(new Vector2(i * 32, j * 32), grassTexture, 32, 32);
+                }
+            }
+            font = Content.Load<SpriteFont>("BarkFont");
+            
             MainHero = new Hero(HeroType.Mage, new Vector2(50, 50), Content.Load<Texture2D>("fameleSprite"), 31, 11);
-
+            testTrigger = new Trigger(new Vector2(300, 300), 100, 100, new TestScript(spriteBatch, font, "test ", MainHero.position),TriggerType.OnState);
             Merch = new Hero(HeroType.Rogue, new Vector2(200, 50), Content.Load<Texture2D>("Merch"), 32, 32);
 
             IsMouseVisible = true;
@@ -64,9 +79,7 @@ namespace ProjectGame
         {
             MainCamera.Update(gameTime, MainHero);
             MainHero.Update(gameTime);
-            
-
-
+          
 
             base.Update(gameTime);
         }
@@ -76,11 +89,18 @@ namespace ProjectGame
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-           // spriteBatch.Begin(SpriteSortMode.Texture,null, null, null, null, null,MainCamera.matrixScreen);
-            spriteBatch.Begin(SpriteSortMode.Deferred,null,SamplerState.PointWrap,DepthStencilState.Default,RasterizerState.CullNone,null,MainCamera.matrixScreen);
-            MainHero.Draw(spriteBatch, 0f, 5f);
-            Merch.Draw(spriteBatch, 0f, 5f);
-            MainHero.Draw(spriteBatch, 0f, 5f);
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, DepthStencilState.Default, null, null, MainCamera.matrixScreen);
+
+            foreach (Grass grass in grass)
+            {
+                grass.Draw(spriteBatch, 0f, 0f);
+
+            }
+            testTrigger.Action(MainHero.collider);
+            spriteBatch.DrawString(font, "position main hero " + MainHero.position.X.ToString() + "," + MainHero.position.Y.ToString() + " .", MainHero.position+new Vector2(75,-75), Color.White);
+            Merch.Draw(spriteBatch, 0f, 5);
+            MainHero.Draw(spriteBatch, 0f, 5);
+
             spriteBatch.End();
 
             base.Draw(gameTime);

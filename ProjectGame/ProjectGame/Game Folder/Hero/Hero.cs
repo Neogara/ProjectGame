@@ -16,7 +16,7 @@ public class Hero : GameObject
     public int Heath = 100;
     public int Mana = 100;
     public int Speed = 5;
-    public int Karma = 0 ;
+    public int Karma = 0;
 
     //характеристики
     public int Strench = 5;
@@ -26,10 +26,10 @@ public class Hero : GameObject
     public int Luck = 5;
     public int Barter = 5;
 
-    public int Attack= 5;
+    public int Attack = 5;
     public int Deffense = 5;
     public int MissChanse = 1;
-    
+
 
     public Hero(HeroType HeroType, Vector2 position, Texture2D texture, int frameH, int frameW) : base(position, texture, frameH, frameW)
     {
@@ -37,7 +37,7 @@ public class Hero : GameObject
     }
 
     public Hero() : this(HeroType.Knight, new Vector2(0, 0), null, 0, 0) { }
-  
+
     public override void Update(GameTime gameTime)
     {
         #region Move 
@@ -57,15 +57,16 @@ public class Hero : GameObject
             position.X += -Speed;
             GoLeftSideAnimation(gameTime);
         }
-       else if (Keyboard.GetState().IsKeyDown(Keys.D))
+        else if (Keyboard.GetState().IsKeyDown(Keys.D))
         {
             position.X += Speed;
             GoRightSideAnimation(gameTime);
         }
-       else
+        else
         {
             IdleAnimation(gameTime);
         }
+        collider = new Rectangle((int)position.X, (int)position.Y, frameW, frameH);
         #endregion //Хождение героя 
     }
 
@@ -74,14 +75,14 @@ public class Hero : GameObject
         // animation.DrawAnimation(gameTime, 1, 1, 1);
     }
 
-    public void GoRightSideAnimation (GameTime gameTime)
+    public void GoRightSideAnimation(GameTime gameTime)
     {
-        this.rect = animation.DrawAnimation(gameTime, 0,0,33);
+        this.rect = animation.DrawAnimation(gameTime, 0, 0, 33);
     }
 
     public void GoLeftSideAnimation(GameTime gameTime)
     {
-         this.rect = animation.DrawAnimation(gameTime, 1, 0,33 );
+        this.rect = animation.DrawAnimation(gameTime, 1, 0, 33);
     }
 
     public void GoUpSideAnimation(GameTime gameTime)
@@ -115,4 +116,4 @@ public class Hero : GameObject
     }
 
 }
- //герой за которого мы играем 
+//герой за которого мы играем 

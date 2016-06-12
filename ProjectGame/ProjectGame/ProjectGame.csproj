@@ -74,12 +74,17 @@
   <ItemGroup>
     <Compile Include="Game Folder\Camera.cs" />
     <Compile Include="Game Folder\Enemy\Enemy.cs" />
+    <Compile Include="Game Folder\Ground\Grass.cs" />
     <Compile Include="Game Folder\Hero\Famale.cs" />
     <Compile Include="Game Folder\Hero\Hero.cs" />
     <Compile Include="Game Folder\Items\Item.cs" />
     <Compile Include="Game Folder\Ground\Ground.cs" />
     <Compile Include="Game Folder\GameEnum.cs" />
     <Compile Include="Game Folder\GameObject.cs" />
+    <Compile Include="Game Folder\Npc\Npc.cs" />
+    <Compile Include="Game Folder\Script\Script.cs" />
+    <Compile Include="Game Folder\Script\TestScript.cs" />
+    <Compile Include="Game Folder\Trigger.cs" />
     <Compile Include="Game Folder\Used\Used.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
