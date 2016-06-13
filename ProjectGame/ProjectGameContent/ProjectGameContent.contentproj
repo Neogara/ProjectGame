@@ -30,21 +30,21 @@
     <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.VideoImporters, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Chest.png">
+    <Compile Include="Uses\Chest.png">
       <Name>Chest</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="fameleSprite.png">
+    <Compile Include="HeroSprite\fameleSprite.png">
       <Name>fameleSprite</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Merch.png">
+    <Compile Include="HeroSprite\Merch.png">
       <Name>Merch</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -65,14 +65,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ddd.png">
-      <Name>ddd</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="GrassSprite.png">
+    <Compile Include="Ground\GrassSprite.png">
       <Name>GrassSprite</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -81,6 +74,13 @@
   <ItemGroup>
     <Compile Include="triggerSprite.png">
       <Name>triggerSprite</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Uses\Door.png">
+      <Name>Door</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
